@@ -25,7 +25,10 @@ export const Tracing = ({cinema}) => {
     console.log('ticket', ticket.current.value);
     console.log('nome e cognome', agregato.current.value);
     console.log('numero tel', number.current.value); */
-    
+    if (!cinema){
+      alert("fai prima il login grazie")
+      return
+    }
 
     if (
       !codFisc.current.value &&

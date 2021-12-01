@@ -10,16 +10,17 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 export default function App() {
  const[cinema,setCinema]=useState('');
+ const[isLogged,setLogged]=useState(false)
 
   return (
     <div>
       
       <div className="container-fluid">
         <Router>
-          <Navbar />
+          <Navbar isLogged={isLogged}/>
           <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="login" element={<Login setCinema={setCinema}/>} />
+            <Route path="/" element={<Login setCinema={setCinema} setLogged={setLogged}/>} />
+            <Route path="login" element={<Login setCinema={setCinema} setLogged={setLogged}/>} />
             <Route path="tracing" element={<Tracing cinema={cinema}/>} />
             <Route
               path="*"

@@ -1,7 +1,7 @@
 const db={
     host:'localhost',
     user:'root',
-    password:'password',
+    password:'Enterpri$e109',
     database:'tracingdb'
 }
 
