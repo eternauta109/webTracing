@@ -28,22 +28,21 @@ router.post(["/", "/login"], (req, res, next) => {
         next(new ErrorHandler(0,err));
         return
       }      
-      if (result.length === 0) {
-        
+      if (result.length === 0) {        
         next(new ErrorHandler(404,"username non presente nel db"));
         return        
       }      
       if (result[0].password === password) {
-        console.log("query result", result[0].cinema);
+        /* console.log("query result", result[0].cinema); */
         /* res.status(301).redirect("/tracing") */
         res.status(200).json(result[0].cinema);
         return;
       }
-      res.json(null);
+      next(new ErrorHandler(404,"password errata"));
       return;
     });
   } catch (error) {
-    next(new ErrorHandler(0,error)) ;
+    next(new ErrorHandler(404,"errore nella try della query sul login: vedi server/login.js")) ;
     return
   }
 });

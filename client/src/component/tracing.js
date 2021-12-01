@@ -19,12 +19,7 @@ export const Tracing = ({cinema}) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    console.log('onSubmit');
-    /* setCodFisc(event.currentTarget.codFisc.value); */
-    /* console.log('cod fisc', codFisc.current.value);
-    console.log('ticket', ticket.current.value);
-    console.log('nome e cognome', agregato.current.value);
-    console.log('numero tel', number.current.value); */
+ 
     if (!cinema){
       alert("fai prima il login grazie")
       return
@@ -78,20 +73,31 @@ export const Tracing = ({cinema}) => {
         
       }).then((res)=>{        
         if (res.data){
-          console.log("res data",res.data);
+          toast.success(
+            'registrazione avvenuta',
+            {
+              position: 'bottom-right',
+              autoClose: 1000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            }
+          );
         } else{
           alert("qualcosa è andato storto. Riprova")
         }
       }).catch((e)=>
-        console.log(e)
+        alert(e.response.data)
       );
       
     } catch (error) {
-      console.log("error axios tracing", error);
+      alert("error axios tracing", error);
     }
 
     setCounter(counter + 1);
-    console.log(counter)
+    /* console.log(counter) */
    
     let newArrya = [...registrer];
     newArrya[counter] = {
@@ -117,7 +123,7 @@ export const Tracing = ({cinema}) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-4 offset-md-4">
+        <div className="col-md-8 offset-md-2">
           <div className="login-form bg-light mt-4 p-4">
             <form className="row g-3" onSubmit={onSubmit}>
               <h4>Tracing</h4>
@@ -174,7 +180,7 @@ export const Tracing = ({cinema}) => {
             <Table registration={registrer} />
             <hr className="mt-4" />
             <div className="col-12">
-              <p className="text-center mb-0">dev by FC</p>
+              <p className="text-center mb-0">dev by Fabio Conti</p>
             </div>
           </div>
         </div>

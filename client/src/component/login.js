@@ -13,14 +13,14 @@ export const Login = ({ setCinema, setLogged }) => {
 
     const user = username.current.value;
     const pass = password.current.value;
-    console.log("login value nel submit", user, pass);
+    /* console.log("login value nel submit", user, pass); */
 
     if (!username || !password) {
-      console.log("campi vuoti");
+      alert("campi vuoti");
       return;
     }
 
-    console.log("sono nel submit");
+    /* console.log("sono nel submit"); */
 
     try {
       const result = await Axios.post("http://localhost:3001/", {
@@ -28,7 +28,7 @@ export const Login = ({ setCinema, setLogged }) => {
         password: password.current.value,
       })
         .then((res) => {
-          console.log(res.data);
+          /* console.log("login respone",res.data); */
           setCinema(res.data);
           setLogged(true)
           return navigate("/tracing");
@@ -41,7 +41,7 @@ export const Login = ({ setCinema, setLogged }) => {
           return
         });
     } catch (error) {
-      alert(error.response.data);
+      alert(error);
       return;
     }
   };
@@ -86,7 +86,7 @@ export const Login = ({ setCinema, setLogged }) => {
             </form>
             <hr className="mt-4" />
             <div className="col-6">
-              <p className="text-end mb-0 fs-6">dev by FC</p>
+              <p className="text-end mb-0 fs-6">dev by Fabio Conti</p>
             </div>
           </div>
         </div>
