@@ -11,11 +11,13 @@ export const Tracing = ({cinema}) => {
   const codFisc = useRef('');
   const ticket = useRef('');
   
-  const date = new Date().toLocaleString() + '';
+  /* const date = new Date().toLocaleString() + ''; */
   const agregato = useRef('');
   const number = useRef();
   const [counter, setCounter] = useState(0);
   const [registrer, setRegistrer] = useState([]);
+  const [ondb, setOndb] = useState(true);
+  
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -67,7 +69,7 @@ export const Tracing = ({cinema}) => {
             nameClient: agregato.current.value,
             numberPhone: number.current.value,
             ticket: ticket.current.value,
-            date: date
+            date: new Date().toLocaleString() + ''
           }
           
         
@@ -97,6 +99,7 @@ export const Tracing = ({cinema}) => {
     }
 
     setCounter(counter + 1);
+    setOndb(true)
     /* console.log(counter) */
    
     let newArrya = [...registrer];
@@ -105,7 +108,8 @@ export const Tracing = ({cinema}) => {
       nameClient: agregato.current.value,
       numberPhone: number.current.value,
       ticket: ticket.current.value,
-      date: date
+      date: new Date().toLocaleString() + '',
+      onDb: ondb
     };
 
     setRegistrer(newArrya);
@@ -165,7 +169,7 @@ export const Tracing = ({cinema}) => {
                   className="form-control"
                   aria-label="Disabled input example"
                   placeholder="date"
-                  value={date}
+                  value={new Date().toLocaleString() + ''}
                   disabled
                 />
               </div>
@@ -177,7 +181,7 @@ export const Tracing = ({cinema}) => {
               </div>
             </form>
             <hr />
-            <Table registration={registrer} />
+            <Table registration={registrer} isOndb={setOndb}  />
             <hr className="mt-4" />
             <div className="col-12">
               <p className="text-center mb-0">dev by Fabio Conti</p>

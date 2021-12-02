@@ -16,7 +16,7 @@ app.use(
 );
 
 
-/* app.use(cors); */
+app.use(cors());
 
 app.use(login);
 app.use(tracing);

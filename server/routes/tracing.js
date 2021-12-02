@@ -10,6 +10,24 @@ router.get("/tracing", (req, res) => {
   res.send(req.query.cinema);
 });
 
+router.delete("/tracing",(req,res,next)=>{
+  console.log(req.body.codTicket)
+  const sqlquery =
+    "DELETE FROM tracing WHERE ticket=?;";
+    try {
+      con.query(sqlquery,[req.body.codTicket],(err,result,fields)=>{
+        res.status(200).json(result)
+      })
+    } catch (error) {
+      throw new ErrorHandler(
+        404,
+        "errore sulla query DELETE del tracing: vedi server/tracing.js"
+      );
+    }
+ 
+})
+
+
 router.post("/tracing", (req, res, next) => {
   /* console.log("tracing body", req.body); */
   const reg = req.body.registration;
@@ -43,7 +61,7 @@ router.post("/tracing", (req, res, next) => {
   } catch (error) {
     throw new ErrorHandler(
       404,
-      "errore sulla query del tracong: vedi server/tracing.js"
+      "errore sulla query POST del tracing: vedi server/tracing.js"
     );
   }
 });
